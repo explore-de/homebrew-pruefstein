@@ -3,14 +3,24 @@
 The [Prüfstein](https://github.com/explore-de/pruefstein) compliance agent, for macOS.
 
 ```bash
+brew install explore-de/pruefstein/pruefstein-agent
+```
+
+One command. Naming the tap in full is what makes that work — Homebrew taps on
+your behalf, and installing this way asks for nothing else.
+
+Tapping separately is the other way round:
+
+```bash
 brew tap explore-de/pruefstein
 brew trust explore-de/pruefstein
 brew install pruefstein-agent
 ```
 
-`brew trust` is not optional: since Homebrew 7 a formula from a third-party
-tap will not load until you have said you trust the tap it comes from, and the
-error it gives instead is easy to read as the tap being broken. `brew untrust
+The `brew trust` line is needed on that path and only on that path: since
+Homebrew 7 a formula referred to by its bare name will not load from a
+third-party tap until the tap is trusted, and the refusal reads like the tap is
+broken rather than like a step being missing. `brew untrust
 explore-de/pruefstein` takes it back.
 
 The formula installs a prebuilt GraalVM native binary — there is no JVM to
