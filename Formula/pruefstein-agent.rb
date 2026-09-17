@@ -17,13 +17,13 @@ class PruefsteinAgent < Formula
   # checksums on its own. Homebrew reads the version back out of the filename.
   on_macos do
     on_arm do
-      url "https://github.com/explore-de/pruefstein/releases/download/v1.0.0/pruefstein-agent-1.0.0-darwin-arm64.tar.gz"
-      sha256 "a842cd47f57c5a897c86b134ee91bbd8c9b56f58164cf23403604b03fe51f4f0"
+      url "https://github.com/explore-de/pruefstein/releases/download/v1.0.1/pruefstein-agent-1.0.1-darwin-arm64.tar.gz"
+      sha256 "88c33ad41aedd8070ff956342d243604717d7df3f1aeb428cb28ba2ddf96e631"
     end
 
     on_intel do
-      url "https://github.com/explore-de/pruefstein/releases/download/v1.0.0/pruefstein-agent-1.0.0-darwin-amd64.tar.gz"
-      sha256 "25e550c63796d6c397240c00ac3b75d59c9e47edece64f6eea9e6e1122f8c39c"
+      url "https://github.com/explore-de/pruefstein/releases/download/v1.0.1/pruefstein-agent-1.0.1-darwin-amd64.tar.gz"
+      sha256 "c0a55d1faa4f1a475835c05ea89336ebb475a10dc6ffc29acd88ab5b2b776c5f"
     end
   end
 
@@ -50,8 +50,9 @@ class PruefsteinAgent < Formula
 
   # Nothing here touches the network or the machine's configuration: the point
   # is that the unpacked binary starts and still knows its own interface.
-  # (--version is deliberately not asserted — the agent prints nothing for it.)
   test do
+    # The binary that was unpacked is the one the URL promised.
+    assert_match version.to_s, shell_output("#{bin}/pruefstein-agent --version")
     assert_match "compliance agent", shell_output("#{bin}/pruefstein-agent --help")
     assert_match "login", shell_output("#{bin}/pruefstein-agent --help")
     # --server is the one flag somebody has to be told about, and the one a
