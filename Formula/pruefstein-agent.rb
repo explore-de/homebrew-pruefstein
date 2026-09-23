@@ -31,22 +31,17 @@ class PruefsteinAgent < Formula
     bin.install "pruefstein-agent"
   end
 
-  def caveats
-    <<~EOS
-      The checks run through osquery, which is not installed with this formula:
-
-        brew install --cask osquery
-
-      `pruefstein-agent run` offers to do that for you the first time it needs
-      it, and asks before it does — the same way it asks before reporting
-      anything.
-
-      Point the agent at your server once; it remembers:
-
-        pruefstein-agent login --server https://pruefstein.example.com
-        pruefstein-agent run
-    EOS
-  end
+  # No caveats on purpose. They print on every install and on every `brew
+  # info`, so they are for what nothing else can say — and the agent says all
+  # of this itself, at the moment it matters: `run` asks "You need osqueryi to
+  # continue, install it? [y/n]" and installs it, and `login --help` documents
+  # --server down to the example URL. Repeating that here is noise that a
+  # reader has to scroll past forever to learn it twice.
+  #
+  # osquery is deliberately not a `depends_on cask:` either: the agent asks
+  # before it installs anything, the same way it asks before it reports
+  # anything, and a hard dependency would take that choice away at brew-install
+  # time.
 
   # Nothing here touches the network or the machine's configuration: the point
   # is that the unpacked binary starts and still knows its own interface.
