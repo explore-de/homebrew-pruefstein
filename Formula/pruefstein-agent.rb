@@ -12,6 +12,9 @@ class PruefsteinAgent < Formula
     strategy :github_latest
   end
 
+  # Every check shells out to osqueryi, and the agent stops without it.
+  depends_on cask: "osquery"
+
   # Written out rather than interpolated from a `version` line, so that
   # `brew bump-formula-pr --version=…` can rewrite the URLs and both
   # checksums on its own. Homebrew reads the version back out of the filename.
@@ -32,16 +35,9 @@ class PruefsteinAgent < Formula
   end
 
   # No caveats on purpose. They print on every install and on every `brew
-  # info`, so they are for what nothing else can say — and the agent says all
-  # of this itself, at the moment it matters: `run` asks "You need osqueryi to
-  # continue, install it? [y/n]" and installs it, and `login --help` documents
-  # --server down to the example URL. Repeating that here is noise that a
-  # reader has to scroll past forever to learn it twice.
-  #
-  # osquery is deliberately not a `depends_on cask:` either: the agent asks
-  # before it installs anything, the same way it asks before it reports
-  # anything, and a hard dependency would take that choice away at brew-install
-  # time.
+  # info`, so they are for what nothing else can say — and `login --help`
+  # documents --server down to the example URL. Repeating that here is noise
+  # that a reader has to scroll past forever to learn it twice.
 
   # Nothing here touches the network or the machine's configuration: the point
   # is that the unpacked binary starts and still knows its own interface.

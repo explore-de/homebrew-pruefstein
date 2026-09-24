@@ -43,6 +43,5 @@ reports whether there is a newer release to move to.
 ## What the agent does
 
 It runs your ISO 27001 checks locally through [osquery](https://osquery.io/),
-shows you every result, and reports nothing until you say so. osquery is not
-installed by this formula; `pruefstein-agent run` offers to install it the
-first time it needs it.
+shows you every result, and reports nothing until you say so. The formula
+depends on the osquery cask, so installing the agent installs osquery too.
