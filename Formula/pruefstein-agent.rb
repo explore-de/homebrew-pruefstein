@@ -20,13 +20,13 @@ class PruefsteinAgent < Formula
   # checksums on its own. Homebrew reads the version back out of the filename.
   on_macos do
     on_arm do
-      url "https://github.com/explore-de/pruefstein/releases/download/v1.0.4/pruefstein-agent-1.0.4-darwin-arm64.tar.gz"
-      sha256 "a6469b767cdee580db0cf948354ba401c80d3273c0e7fe9af5e40c8fe973eaa6"
+      url "https://github.com/explore-de/pruefstein/releases/download/v1.0.5/pruefstein-agent-1.0.5-darwin-arm64.tar.gz"
+      sha256 "f98451537167529ac8c1dcd2f54de6fef9ae367d726dceec4fc6ed5dc3561f55"
     end
 
     on_intel do
-      url "https://github.com/explore-de/pruefstein/releases/download/v1.0.4/pruefstein-agent-1.0.4-darwin-amd64.tar.gz"
-      sha256 "ee0ea278be3b4190f1dea39975b02992c8cf9bea9a1b2c0eb2b2a81929dee2bd"
+      url "https://github.com/explore-de/pruefstein/releases/download/v1.0.5/pruefstein-agent-1.0.5-darwin-amd64.tar.gz"
+      sha256 "c3740e69ed0e7c15a571b94f2c71ef3837179ee68d20376a136fcea565a1b0c1"
     end
   end
 
