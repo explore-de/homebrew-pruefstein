@@ -12,8 +12,9 @@ class PruefsteinAgent < Formula
     strategy :github_latest
   end
 
-  # Every check shells out to osqueryi, and the agent stops without it.
-  depends_on cask: "osquery"
+  # Every check shells out to osqueryi, but a formula cannot depend on a cask:
+  # Homebrew rejects `depends_on cask:` outright. The agent names
+  # `brew install --cask osquery` itself when it finds osqueryi missing.
 
   # Written out rather than interpolated from a `version` line, so that
   # `brew bump-formula-pr --version=…` can rewrite the URLs and both
