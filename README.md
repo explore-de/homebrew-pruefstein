@@ -3,17 +3,20 @@
 The [Prüfstein](https://github.com/explore-de/pruefstein) compliance agent, for macOS.
 
 ```bash
+brew install --cask osquery
 brew install explore-de/pruefstein/pruefstein-agent
 ```
 
-One command. Naming the tap in full is what makes that work — Homebrew taps on
-your behalf, and installing this way asks for nothing else.
+osquery first: every check runs through it, and Homebrew does not let a formula
+depend on a cask. Naming the tap in full is what makes the second line work —
+Homebrew taps on your behalf, and installing this way asks for nothing else.
 
 Tapping separately is the other way round:
 
 ```bash
 brew tap explore-de/pruefstein
 brew trust explore-de/pruefstein
+brew install --cask osquery
 brew install pruefstein-agent
 ```
 
@@ -43,5 +46,6 @@ reports whether there is a newer release to move to.
 ## What the agent does
 
 It runs your ISO 27001 checks locally through [osquery](https://osquery.io/),
-shows you every result, and reports nothing until you say so. The formula
-depends on the osquery cask, so installing the agent installs osquery too.
+shows you every result, and reports nothing until you say so. osquery is a
+cask, which a formula cannot depend on, so it is installed separately — and the
+agent says so if it is missing.
